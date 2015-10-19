@@ -1,0 +1,46 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<div align = 'center'>
+<body>
+<div class='' style='width:50%;' align='center'>
+
+  <form action="/register" method="POST"  enctype="multipart/form-data" class="well form-horizontal"style='margin-top:20px;'  novalidate>
+<h1>User Registration</h1>
+<br>
+    Welcome to WebASR - the world's first web-based fully functioning automatic speech recogniser.
+    Please provide your details in the form below, a confirmation email should 
+<br>
+<br>
+<br>
+<br>
+    <fieldset>
+
+    <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+      {% for field in form %}
+        <div class="form_group">
+          {{ field.errors }}
+          <label class="col-sm-2 control-label ">{{ field.label_tag }}</label>
+          <div class="col-sm-10">
+            <input class="form-control" {{ field }} 
+            <br>
+          </div>
+        </div>
+      {% endfor %}
+
+{{form.non_field_errors}}
+
+    <div class="form-actions">
+      
+      <button class="btn btn-primary" style='width:20%;' title="Register">Register</button>
+                          
+    </div>
+                        
+  </fieldset>
+                    
+</form>
+
+</div>
+</body>
+</div>
+{% endblock %}

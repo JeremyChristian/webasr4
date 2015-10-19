@@ -1,0 +1,51 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+{% load static %}
+<div class="well">
+
+	<h1>Research Software</h1>
+    
+    <h2>Bob</h2>
+    
+    <table width="98%" class="compact">
+      <tr>
+        <td valign="top">
+          Bob is a software tool for managing and generating lexicon and pronunciations dictionaries to aid the 
+          development of automatic speech recognition (ASR) systems. The tool is written in Java and is freely 
+          available for noncommercial use under a 
+          <a rel="licence" target="_new" href="http://creativecommons.org/licences/by-nc-nd/2.0/uk/">Creative Commons licence</a>. 
+          Specifically, it targets lexicon and pronunciation dictionary generation in a way that maintains: 
+          <ul class="compact">
+            <li>consistency between spellings in the lexicon and spellings in text corpora used for language modelling
+            <li>consistency in use, by non-phoneticians, of a set of phones to describe the pronunciation of words in a language.
+          </ul>
+          <p>
+          Bob is built from the experience, knowledge and procedures
+          that have been applied successfully in the NIST RT evaluations. It
+          is flexible enough to enable users to generate lexicons tailored for
+          specific tasks, including the ability to exclude classes of words (e.g.
+          removing expletives). The word attribute labels may be customised
+          and extended to suit the users' needs. It is portable across
+          languages: the interface is not specific to English and the letter-to-sound
+          pronunciation predictor can be retrained for any language.
+    
+          <p>
+          <a href="software/lexgen/lexgen-0.1.tar.gz">Download now</a>
+    
+          <p>
+          <a rel="licence" target="_new" href="http://creativecommons.org/licences/by-nc-nd/2.0/uk/">
+          <img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/2.0/uk/88x31.png" />
+          </a>
+          <br /> 
+          <span xmlns:dc="http://purl.org/dc/elements/1.1/" property="dc:title">Bob</span> is licensed under a 
+          <a rel="licence" target="_new" href="http://creativecommons.org/licences/by-nc-nd/2.0/uk/">Creative Commons Attribution-Noncommercial-No Derivative Works 2.0 UK: England &amp; Wales Licence</a>.
+        </td>
+        <td width="320" valign="top">
+          <img src="{% static "frontend/lexgen_prongen.gif" %}" alt="pronunciation generation"><p>
+          <img src="{% static "frontend/lexgen_txtnorm.gif" %}" alt="text normalisation">
+        </td>
+      </tr>
+    </table>
+</div>
+
+{% endblock %}

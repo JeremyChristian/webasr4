@@ -1,0 +1,31 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<table class="table table-hover table-fixed">
+        <thead>
+            <tr style='padding:5px;'>
+              <td>File</td>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for file in testfiles %}
+
+    <tr class = "info">
+
+      <td style="width: 25%">{{file}}</td>
+      
+      
+    </tr>
+
+  {% endfor %} 
+
+        </tbody>
+      </table>
+
+
+
+
+
+{% endblock %}

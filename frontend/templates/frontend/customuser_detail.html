@@ -1,0 +1,123 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<div align = 'center' class='col-sm-6'>
+<table class="table table-hover" style='margin:20px;width: 80%;'>
+<thead>
+  <h1>
+    Basic Information
+  </h1>
+</thead>
+  <tbody>
+    <tr>
+      <td style='width:25%;' align = "right" >Email:</td><td style='width:75%;'> {{object.email}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Forename:</td><td style='width:75%;'> {{object.first_name}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Surname:</td><td style='width:75%;'> {{object.last_name}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Department:</td><td style='width:75%;'> {{object.department}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Address:</td><td style='width:75%;'> {{object.address1}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Telephone:</td><td style='width:75%;'> {{object.telephone}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Fax:</td><td style='width:75%;'> {{object.fax}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Date of Birth:</td><td style='width:75%;'> {{object.dob}}</td>
+    </tr>
+
+  </tbody>
+
+</table>
+</div>
+
+<div align = 'center' class='col-sm-6'>
+<form action="/user/{{object.pk}}/" method="POST" enctype="multipart/form-data" class="form-horizontal"  novalidate>
+  <fieldset>
+  <table class="table table-hover" style='margin:20px;width: 80%;'>
+<thead>
+  <h1>
+    User Status
+  </h1>
+</thead>
+  
+  <tbody>
+    
+    
+     
+      <tr>
+        <td>
+        <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+        <div class="form-group">
+
+          <label class="col-sm-4 control-label ">Admin User:</label>
+
+          <div class="col-sm-8">
+
+            {% if object.is_staff %}
+
+            <input name="is_staff"  type="checkbox" value='True' checked>
+
+            {% else %}
+
+            <input name="is_staff"  type="checkbox" value='True'>    
+
+            {% endif %}
+
+          </div>
+
+        </div>
+
+
+
+      </td>
+      <td>Current Status:   {{object.is_staff}}</td>
+    </tr>
+    <tr>
+        <td>
+        <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+        <div class="form-group">
+
+          <label class="col-sm-4 control-label ">Active User:</label>
+
+          <div class="col-sm-8">
+
+            {% if object.is_active %}
+
+            <input name="is_active"  type="checkbox" value='True'checked>
+
+            {% else %}
+
+            <input name="is_active"  type="checkbox" value='True' >
+
+            {% endif %}
+
+          </div>
+
+        </div>
+      </td>
+      <td>Current Status:   {{object.is_active}}</td>
+    </tr>
+    
+  </tbody>
+
+  
+</table>
+<div class="form-actions">
+      
+      <button style='width:30%;' class="btn btn-primary" title="Update Status">Update Status</button>
+                          
+    </div>
+</fieldset>
+</form>
+</div>
+{% endblock %}

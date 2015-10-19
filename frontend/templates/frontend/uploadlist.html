@@ -1,0 +1,34 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<table class="table well" style='margin-top:20px;'>
+        <thead>
+            <tr>
+              <td>Created</td>
+              <td>File</td>
+              <td>Metadata</td>
+              <td>System</td>
+            </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- {% for x in somedata %} -->
+
+            <tr style='margin: 50px;' class = "">
+              <td style="width: 25%,padding:5px;">{{x.date}}</td>
+              <td style="width: 25%,padding:5px;">{{x.filename}}</td>
+              <td style="width: 25%,padding:5px;">{{x.metaname}}</td>
+              <td style="width: 25%,padding:5px;">{{x.systems}}</td>
+            </tr>
+
+        <!--   {% endfor %} -->
+
+        </tbody>
+      </table>
+
+
+
+
+
+{% endblock %}

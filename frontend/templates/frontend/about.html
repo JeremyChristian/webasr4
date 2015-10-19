@@ -1,0 +1,61 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+{% load static %}
+<div class="well">
+
+	<h1>About webASR</h1>
+    
+    <h2>The Team</h2>
+    
+    <table border="0" cellpadding="10">
+      <tr>
+        <td><img src="{% static "frontend/thomas.jpg" %}"></td>
+        <td>
+          <strong><a href="http://www.dcs.shef.ac.uk/~th" target="_new">Dr Thomas Hain</a></strong><br>
+          <i>Project Lead</i>
+          <br>
+          Dr Hain obtained the degree 'Dipl.-Ing' in Electrical/Communication Engineering in 1994 from the University of Technology, Vienna . He joined the Speech Technology Group at Philips Speech Processing which he left in a senior position. In 1997 he joined the Speech, Vision and Robotics Group at the Cambridge University Engineering Department as Research Associate and PhD Student. He took up a Lectureship at the SVR group in 2001. In 2004 he joined the Speech and Hearing Group at the Department of Computer Science, University of Sheffield as a lecturer in Computer Science. Dr Hain is Principal Investigator (PI) of <a href="http://www.amiproject.org">AMIDA</a> at Sheffield and is a member of the <a href="http://www.amiproject.org">AMIDA</a> project board.
+        </td>
+      </tr>
+      <tr>
+        <td><img src="{% static "frontend/vinny.jpg" %}"></td>
+        <td>
+          <strong><a href="http://www.dcs.shef.ac.uk/~vinny" target="_new">Dr Vincent Wan</a></strong><br>
+          <i>ASR Research and Development</i>
+          <br>
+          Dr Wan received the B.A. degree in physics from the University of Oxford, Oxford, U.K., in 1997 and the Ph.D. degree in speaker verification and support vector machines from the University of Sheffield, Sheffield, U.K., in 2003. In 1998 and 1999, he worked on hybrid speech recognition at the University of Sheffield, then spent 2000 working at the Motorola Human Interface Labs, Palo Alto, CA, on speech and handwriting recognition. He is presently holding a postdoctoral position in the Department of Computer Science, University of Sheffield. His interests include machine learning, biometrics, and speech processing. Dr Wan is in charge of all ASR research within the <a href="http://www.amiproject.org">AMIDA</a> project.
+        </td>
+      </tr>
+      <tr>
+        <td><img src="{% static "frontend/asmaa.jpg" %}"></td>
+        <td>
+          <strong><a href="http://www.dcs.shef.ac.uk/~asmaa" target="_new">Dr Asmaa El Hannani</a></strong><br>
+          <i>ASR Research and Development</i>
+          <br>
+          Dr El Hannani received the Diploma (MSc) degree in computer science from the University of Fribourg, Fribourg, Switzerland, in 2003. In 2007 she obtained a joint Ph.D. degree in speaker verification from the University of Fribourg, Switzerland and Institut National des T&eacute;l&eacute;communication, Evry, France. Then, she joined the Department of Computer Science, University of Sheffield, as Research Associate within the Speech and Hearing Research Group working within the <a href="http://www.amiproject.org">AMIDA</a> project. Her interests include biometrics technologies and speech processing. 
+        </td>
+      </tr>
+      <tr>
+        <td><img src="{% static "frontend/oscar.jpg" %}" width="130px"></td>
+        <td>
+          <strong><a href="http://staffwww.dcs.shef.ac.uk/people/O.Saztorralba/" target="_new">Dr Oscar Saz</a></strong><br>
+          <i>ASR Research and Development</i>
+          <br>
+	  Dr Saz is a Research Associate at the University of Sheffield, working with Thomas Hain in the NST project since 2012. He received a B.Sc. and Ph.D. from the University of Zaragoza, Spain in 2004 and 2009, respectively. From 2010 to 2012, he was a Fulbright Fellow at Carnegie Mellon University in Pittsburgh, USA. He has worked in several areas of speech and language technologies like acoustic modeling, robust ASR in noisy conditions, ASR for disordered speech, speaker adaptation, pronunciation verification and computer-assisted language learning tools.
+        </td>
+      </tr>
+      <tr>
+        <td><img src="{% static "frontend/stu.jpg" %}"></td>
+        <td>
+          <strong><a href="http://www.dcs.shef.ac.uk/~stu" target="_new">Dr Stuart N Wrigley</a></strong><br>
+          <i>Web application design, development and integration</i>
+          <br>
+          Dr Wrigley received the B.Sc. and Ph.D. degrees in computer science from the University of Sheffield, Sheffield, U.K., in 1998 and 2002, respectively. Since 2002, he has worked in the Department of Computer Science, University of Sheffield, as a Research Associate on a number of EU-funded projects focused on developing technology to facilitate meetings (M4, AMI and <a href="http://www.amiproject.org">AMIDA</a>). He has research interests in auditory selective attention, short term memory, multitasking, feature binding and binaural hearing. Dr Wrigley is Work Package Manager for all <a href="http://www.amiproject.org">AMIDA</a> audio, video and multimodal processing research.
+        </td>
+      </tr>
+    </table>
+
+	
+</div>
+
+{% endblock %}

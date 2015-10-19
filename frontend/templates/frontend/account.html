@@ -1,0 +1,41 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<div align='center' class='' style='margin:20px;'>
+<table class="table table-hover" style='margin:20px;width: 80%;'>
+<thead>
+  <h1>
+    Personal Information
+  </h1>
+</thead>
+  <tbody>
+    <tr>
+      <td style='width:25%;' align = "right" >Email:</td><td style='width:75%;'> {{user.email}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Forename:</td><td style='width:75%;'> {{user.first_name}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Surname:</td><td style='width:75%;'> {{user.last_name}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Department:</td><td style='width:75%;'> {{user.department}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Address:</td><td style='width:75%;'> {{user.address1}}<br>{{user.address2}}<br>{{user.postcode}}<br>{{user.city}}<br>{{user.country}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Telephone:</td><td style='width:75%;'> {{user.telephone}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Fax:</td><td style='width:75%;'> {{user.fax}}</td>
+    </tr>
+    <tr>
+      <td style='width:25%;' align = "right" >Date of Birth:</td><td style='width:75%;'> {{user.dob}}</td>
+    </tr>
+
+  </tbody>
+
+</table>
+<button style='width:20%;' class="btn btn-primary" title="Edit Info" onclick="location.href = '/user_edit';">Edit Info</button>
+</div>
+{% endblock %}

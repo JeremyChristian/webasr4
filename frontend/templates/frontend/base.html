@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+	<head>
+
+		<title>Bootstrap Case</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static "frontend/stylesheet.css" %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<div class="container" id="page-shadow"> 
+
+			<div id="content">		
+
+				<nav class="navbar" id="top-banner">
+
+				  <div class="container-fluid">
+
+				    <div class="navbar-header">
+
+				      <a class="navbar-brand" href="#">WebASR</a>
+
+				    </div>	
+
+				  </div>
+
+				</nav>
+
+				<div class="container-fluid" id="edgy">
+
+					<div class="row-fluid" id="edgy">
+
+						<div class="col-md-2 well well-sm" id="edgy">
+
+							<div class="list-group" id="edgy">
+
+								<a href="#" class="list-group-item active"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+								<a href="#" class="list-group-item"><span class="glyphicon glyphicon-user"></span> Sign Up</a>		
+
+							</div>
+
+							<div class="list-group" id="last">
+
+								<a href="#" class="list-group-item">About Us</a>
+								<a href="#" class="list-group-item">Conditions of Use</a>
+								<a href="#" class="list-group-item">Supporting Projects</a>
+								<a href="#" class="list-group-item">Research Software</a>
+								<a href="#" class="list-group-item">Publications</a>
+								<a href="#" class="list-group-item">Systems</a>
+								<a href="#" class="list-group-item">FAQ</a>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-10">
+
+							{% block content %}
+                    		{% endblock %}
+     
+    					</div>
+
+					</div>
+
+				</div>
+		  
+			</div> 
+
+			<div id="info">
+
+				<a href="http://www.shef.ac.uk">
+
+					<img src="{% static "frontend/UOS.gif" %}" alt="The University of Sheffield">
+
+				</a>
+
+				<a href="http://spandh.dcs.shef.ac.uk">
+
+					<img src="{% static "frontend/SPaH.gif" %}" alt="SpandH">
+
+				</a>
+
+				<p>
+
+					Department of Computer Science <br>
+					The University of Sheffield <br>
+					Regent Court, 211 Portobello, Sheffield, S1 4DP <br>
+					United Kingdom <br>
+					Tel: +44 (0) 114 222 1800 | Fax: +44 (0) 114 222 1810 <br>
+
+				</p>
+				
+			</div>
+
+			<footer>
+
+				Copyright © 2015
+
+			</footer>
+
+			</div>
+
+		</div>
+		 
+	</body>
+
+</html>

@@ -1,0 +1,136 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<script type="text/javascript">
+var lastSelectedRow;
+var trs = document.getElementById('tableStudent').tBodies[0].getElementsByTagName('tr');
+
+// disable text selection
+document.onselectstart = function() {
+    return false;
+}
+
+function RowClick(currenttr, lock) {
+    if (window.event.ctrlKey) {
+        toggleRow(currenttr);
+    }
+    
+    if (window.event.button === 0) {
+        if (!window.event.ctrlKey && !window.event.shiftKey) {
+            clearAll();
+            toggleRow(currenttr);
+        }
+    
+        if (window.event.shiftKey) {
+            selectRowsBetweenIndexes([lastSelectedRow.rowIndex, currenttr.rowIndex])
+        }
+    }
+}
+
+function toggleRow(row) {
+    row.className = row.className == 'info' ? '' : 'info';
+    lastSelectedRow = row;
+}
+
+function selectRowsBetweenIndexes(indexes) {
+    indexes.sort(function(a, b) {
+        return a - b;
+    });
+    var trs = document.getElementById('tableStudent').tBodies[0].getElementsByTagName('tr');
+    for (var i = indexes[0]; i <= indexes[1]; i++) {
+        trs[i-1].className = 'info';
+    }
+}
+
+function clearAll() {
+  var trs = document.getElementById('tableStudent').tBodies[0].getElementsByTagName('tr');
+    for (var i = 0; i < trs.length; i++) {
+        trs[i].className = '';
+    }
+}
+
+function addFile(group) {
+  
+  
+  form = document.createElement("form");
+  form.action = '/grouplist'
+  form.method = 'POST'
+  form.enctype = 'multipart/form-data'
+  var inputName = 'group'
+  var newInput = document.createElement("INPUT");
+  newInput.name = inputName;
+  newInput.type = "text";
+  newInput.value = group
+  form.appendChild(newInput)
+
+  var trs = document.getElementById('tableStudent').tBodies[0].getElementsByTagName('tr');
+  
+  for (var i = 0; i < trs.length; i++) {
+
+    if (trs[i].className == 'info') {
+      
+      var tds = trs[i].getElementsByTagName('td') 
+      var inputName = 'user$'
+      inputName = inputName.replace('$',i.toString())
+      var newInput = document.createElement("INPUT");
+      newInput.name = inputName;
+      newInput.type = "text";
+      newInput.value = tds[0].innerHTML
+      form.appendChild(newInput)
+    }
+
+  }
+
+
+  form.submit()
+  
+}
+
+
+
+
+</script>
+
+
+
+<div align='center' style='margin:20px;'>   
+                       
+<table id="tableStudent" class="table table-hover" style='border:20px; width:100%;'>
+
+  <thead style='border:20px;'>
+
+    <tr style='border:20px;'>
+
+      <td style='width:40%;'>Email</td>
+      <td>Groups</td>
+      <td>Active</td>
+      <td>Staff</td>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+  {% for user in queryset %}
+
+    <tr onmousedown="RowClick(this,false);">
+
+      <td>{{user.email}}</td>
+      <td>{% for group in user.groups.all %}
+            {{group.name}}
+          {% endfor %}</td>
+      <td>{{user.is_active}}</td>
+      <td>{{user.is_staff}}</td>
+      <td><a href="user/{{user.pk}}">details</a>    <a href="uploads/{{user.pk}}">  uploads</a></td>
+    </tr>
+
+  {% endfor %} 
+
+  </tbody>
+
+</table></div>
+
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<body>
+<script type="text/javascript">
+var i = 1
+// var input = {language:"", environment:"", checkone:false, checktwo:false}
+// var data = {{data}};
+function addFile() {
+        i = i + 1;
+        var inputType = 'file$'
+        var labelText = 'Channel $:'
+        inputType = inputType.replace('$',i.toString())
+        labelText = labelText.replace('$',i.toString())
+        var newItem = document.createElement("DIV");
+        newItem.className = 'form-group'
+        var newLabel = document.createElement("LABEL");
+        newLabel.className = "col-sm-2 control-label";
+        var newDiv = document.createElement("DIV");
+        newDiv.className = "col-sm-7";
+        var newInput = document.createElement("INPUT");
+        newInput.name = inputType;
+        newInput.type = "file";
+        var labelText = document.createTextNode(labelText);
+        newLabel.appendChild(labelText);
+        newItem.appendChild(newLabel);
+        newDiv.appendChild(newInput);
+        newItem.appendChild(newDiv);
+        var list = document.getElementById("filelist");
+        list.appendChild(newItem);
+}
+
+
+// function populateSystems() {
+//      if (input.checkone) {
+//              if (input.checktwo) {
+//                      document.getElementById("bah").innerHTML += data[0].name
+//                      var systems = []
+//                      for (i=0;i<systems.length;i++;) {
+//                              if (input.language == data[i].language) {
+//                                      // string = '<option value="$" >$</option>'
+//                                      // string = string.replace('$',data[i].name)
+//                                      document.getElementById("bah").innerHTML += 'bah'
+//                              }
+//                      }
+                
+
+
+//              }
+//      }
+// }
+
+function addLang() {
+        input.language = (document.getElementById("language")).value;
+        input.checkone = true;
+        populateSystems();
+}
+function addEnv() {
+        input.environment = (document.getElementById("environment")).value;
+        input.checktwo = true;
+        populateSystems();
+}
+
+
+</script>
+
+
+
+<form action="/newupload" method="POST" enctype="multipart/form-data" class="form-horizontal well" style='margin-top:20px;'novalidate>
+
+        <fieldset>
+
+                <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+        
+
+
+        {% for field in form %}
+
+      
+        <div class="form_group">
+          {{ field.errors }}
+          <label class="col-sm-2 control-label ">{{ field.label_tag }}</label>
+          <div class="col-sm-10">
+            {{ field }} 
+            <br>
+          </div>
+        </div>
+      
+{% endfor %}
+                
+                 <div class="form_group" id='filelist'>
+          
+          <label class="col-sm-2 control-label "><label for="file1">Audiofile:</label></label>
+          <div class="col-sm-10">
+            <input id="file1" name="file1" type="file" /> 
+            <br>
+          </div>
+        </div>
+                        
+                <div class="form-actions" style='margin-bottom:10px;'>
+
+                        <input class="btn btn-primary" type='button' onclick="addFile();" value='Add File'>
+                        
+                </div>
+                        
+                <div class="form-actions">
+                        
+                        <button class="btn btn-primary" title="Upload User Audio to WebASR">Upload</button>
+                                                                                                        
+                </div>
+
+        </fieldset>
+                                                                                
+</form>
+
+</body>                 
+
+{% endblock %}

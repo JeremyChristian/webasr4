@@ -1,0 +1,55 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<div align = 'center' class='col-sm-4'>
+<table class="table table-hover" style='margin:20px;width: 80%;'>
+<thead>
+  <h1>
+    Audio Channels
+  </h1>
+</thead>
+  <tbody>
+    {% for file in audiofiles %}
+          
+      <tr>
+        <td> {{file}}</td>
+      </tr>
+
+    {% endfor %}
+  
+  </tbody>
+
+</table>
+</div>
+
+<div align = 'center' class='col-sm-8'>
+<table class="table table-hover" style='margin:20px;width: 80%;'>
+<thead>
+  <h1>
+    Files
+  </h1>
+</thead>
+  <tbody>
+    
+          
+      <tr>
+        <td style='width:25%;' align = "right" >Created:</td><td style='width:75%;'> {{object.created}}</td>
+      </tr>
+      <tr>
+        <td style='width:25%;' align = "right" >Language:</td><td style='width:75%;'> {{object.language}}</td>
+      </tr> 
+      <tr>
+        <td style='width:25%;' align = "right" >Environment:</td><td style='width:75%;'> {{object.environment}}</td>
+      </tr>
+     <tr>
+        <td style='width:25%;' align = "right" >System Used:</td><td style='width:75%;'> {{object.systems}}</td>
+      </tr>
+
+      <tr>
+        <td style='width:25%;' align = "right" >File Download:</td><td style='width:75%;'><a href='/download/{{object.pk}}'>{{object.transcripts}}</a></td>
+      </tr>
+  
+  </tbody>
+
+</table>
+</div>
+{% endblock %}

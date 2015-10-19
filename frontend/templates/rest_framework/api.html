@@ -1,0 +1,332 @@
+{% extends "rest_framework/base.html" %}
+{% load url from future %}
+{% load staticfiles %}
+{% load rest_framework %}
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                {% block head %}
+
+                        {% block meta %}
+                                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                                <meta name="robots" content="NONE,NOARCHIVE" />
+                                <meta name="viewport" content="width=device-width, initial-scale=1">
+                        {% endblock %}
+
+                        <title>{% block title %}WebASR{% endblock %}</title>
+
+                        {% block style %}
+                                {% block bootstrap_theme %}
+                                        <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/bootstrap.min.css" %}"/>
+                                {% endblock %}
+                                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+                                <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/prettify.css" %}"/>
+                                <link rel="stylesheet" type="text/css" href="{% static "rest_framework/css/default.css" %}"/>
+                                
+                                
+                                <link rel="stylesheet" href="{% static "nictitate/style.css" %}">
+                                <link rel="stylesheet" href="{% static "frontend/stylesheet.css" %}">
+                        {% endblock %}
+
+                {% endblock %}
+        </head>
+
+        
+
+
+        {% block body %}
+        <body class="{% block bodyclass %}{% endblock %}">
+
+                <div class="container" id="page-shadow">
+                        <div id="content"> 
+                        {% block navbar %}
+                                <header id="page-header">
+                <div id="header-bottom" class="cbp-af-header">
+                    <div class="wrapper">
+                        <div class="row-fluid">
+                            <div class="span12 clearfix">
+                                <!--logo-image-->
+                                <nav id="main-nav">
+
+
+
+
+{% if request.user.is_staff == True %}
+<div class = 'dropdown'>
+<ul id="main-menu" class="clearfix sf-js-enabled sf-arrows">
+
+<li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page dropdown-toggle"  data-toggle="dropdown"><a data-description=""><i data-icon="<U+F0C0>"></i><span>Admin Activities</span></a></li>
+
+<ul class="dropdown-menu">
+        <li id="menu-item-69" class="dmi menu-item menu-item-type-post_type menu-item-object-page"><a href="/systems" data-description=""><i data-icon="<U+F0C0>"></i><span>Systems</span></a></li>
+        <li id="menu-item-70" class="dmi menu-item menu-item-type-post_type menu-item-object-page"><a href="/users" data-description=""><i data-icon="<U+F10A>"></i><span>Users</span></a></li>
+        <li id="menu-item-70" class="dmi menu-item menu-item-type-post_type menu-item-object-page"><a href="/processes" data-description=""><i data-icon="<U+F10A>"></i><span>Processes</span></a></li>
+        <li id="menu-item-70" class="dmi menu-item menu-item-type-post_type menu-item-object-page"><a href="/groups" data-description=""><i data-icon="<U+F10A>"></i><span>User Groups</span></a></li>
+</ul>
+
+<li id="menu-item-429" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/newupload" data-description=""><i data-icon="<U+F019>"></i><span>New Upload</span></a></li>
+
+<li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/uploads/{{user.pk}}" data-description=""><i data-icon="<U+F10A>"></i><span>Upload List</span></a></li>
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/account" data-description=""><i data-icon="<U+F069>"></i><span>Account</span></a></li>
+
+</div>
+{%endif%}
+
+
+{% if request.user.is_authenticated %}
+
+{% endif %}
+<!-- <div class = 'dropdown'>
+        <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page dropdown-toggle"  data-toggle="dropdown"><a data-description=""><i data-icon="<U+F0C0>"></i><span>Audio Uploads</span></a></li>
+
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/signout" data-description=""><i data-icon="<U+F069>"></i><span>Signout</span></a></li>
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/login" data-description=""><i data-icon="<U+F069>"></i><span>Sign In</span></a></li>
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/register" data-description=""><i data-icon="<U+F069>"></i><span>Register</span></a></li>
+
+</ul><div id="mobile-menu" class="menu-menu-1-container"><span>Menu</span><ul id="toggle-view-menu">
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68 clearfix"><h3><a href="/account">Account</a></h3></li>
+<li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69 clearfix"><h3><a href="/systems">Systems</a></h3></li>
+
+<li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70 clearfix"><h3><a href="/users">Users</a></h3></li>
+<li id="menu-item-429" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-429 clearfix"><h3><a href="/newupload">Uploads</a></h3></li>
+</ul></div>   -->   
+
+
+
+
+
+
+
+
+                           </nav><!--main-nav-->
+                            </div><!--span12-->
+                        </div><!--row-fluid-->
+                    </div><!--wrapper-->
+                </div><!--header-bottom-->
+                        {% endblock %}
+
+                        <div class="container">
+                        {% block breadcrumbs %}
+                                <!-- <ul class="breadcrumb">
+                                        {% for breadcrumb_name, breadcrumb_url in breadcrumblist %}
+                                                {% if forloop.last %}
+                                                        <li class="active"><a href="{{ breadcrumb_url }}">{{ breadcrumb_name }}</a></li>
+                                                {% else %}
+                                                        <li><a href="{{ breadcrumb_url }}">{{ breadcrumb_name }}</a></li>
+                                                {% endif %}
+                                        {% endfor %}
+                                </ul> -->
+                        {% endblock %}
+
+                        <!-- Content -->
+                        <div id="content" style='height:100%;'>
+
+                                <div class="row-fluid" >
+
+                                                <!-- <div class="col-md-2">
+
+                                                        <div >
+
+                                                                <a href="/newupload" class="list-group-item active"> New Upload</a>
+                                                                <a href="/uploads" class="list-group-item"> Previous Uploads</a>
+                                                                <a href="/users" class="list-group-item "> Users</a>
+                                                                <a href="/systems" class="list-group-item"> Systems</a>
+                                                                <a href="/signup" class="list-group-item"> Signup</a>   
+
+                                                        </div>
+
+                                                        <div >
+
+                                                                <a href="#" class="list-group-item">About Us</a>
+                                                                <a href="#" class="list-group-item">Conditions of Use</a>
+                                                                <a href="#" class="list-group-item">Supporting Projects</a>
+                                                                <a href="#" class="list-group-item">Research Software</a>
+                                                                <a href="#" class="list-group-item">Publications</a>
+                                                                <a href="#" class="list-group-item">Systems</a>
+                                                                <a href="#" class="list-group-item">FAQ</a>
+
+                                                        </div>
+
+                                                </div> -->
+
+                                                <div class="col-md-12" style='height:100%;'>
+                                                        
+                                                        {% block content %}
+                                                                                {% endblock %}          
+                                                        
+                                                                {% if paginator %}
+                                                                        <nav style="float: right">
+                                                                        {% get_pagination_html paginator %}
+                                                                        </nav>
+                                                                {% endif %}
+
+                                                        
+
+                                {% if display_edit_forms %}
+
+                                        {% if post_form  %}
+                                                <div {% if post_form %}class="tabbable"{% endif %}>
+                                                        {% if post_form %}
+                                                                <ul class="nav nav-tabs form-switcher">
+                                                                        <li>
+                                                                                <a name='html-tab' href="#post-object-form" data-toggle="tab">HTML form</a>
+                                                                        </li>
+                                                                        
+                                                                </ul>
+                                                        {% endif %}
+                                                        <div class="well tab-content">
+                                                                {% if post_form %}
+                                                                        <div class="tab-pane" id="post-object-form">
+                                                                                {% with form=post_form %}
+                                                                                        <form action="{{ request.get_full_path }}"
+                                                                                                  method="POST" enctype="multipart/form-data" class="form-horizontal" novalidate>
+                                                                                                <fieldset>
+                                                                                                        {{ post_form }}
+                                                                                                        <div class="form-actions">
+                                                                                                                <button class="btn btn-primary"
+                                                                                                                                title="Make a POST request on the {{ name }} resource">POST</button>
+                                                                                                        </div>
+                                                                                                </fieldset>
+                                                                                        </form>
+                                                                                {% endwith %}
+                                                                        </div>
+                                                                {% endif %}
+                                                                <div {% if post_form %}class="tab-pane"{% endif %} id="post-generic-content-form">
+                                                                        {% with form=raw_data_post_form %}
+                                                                                <form action="{{ request.get_full_path }}" method="POST" class="form-horizontal">
+                                                                                        <fieldset>
+                                                                                                {% include "rest_framework/raw_data_form.html" %}
+                                                                                                <div class="form-actions">
+                                                                                                        <button class="btn btn-primary"
+                                                                                                                        title="Make a POST request on the {{ name }} resource">POST</button>
+                                                                                                </div>
+                                                                                        </fieldset>
+                                                                                </form>
+                                                                        {% endwith %}
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        {% endif %}
+
+                                        {% if put_form or raw_data_put_form or raw_data_patch_form %}
+                                                <div {% if put_form %}class="tabbable"{% endif %}>
+                                                        {% if put_form %}
+                                                                <ul class="nav nav-tabs form-switcher">
+                                                                        <li>
+                                                                                <a name='html-tab' href="#put-object-form" data-toggle="tab">HTML form</a>
+                                                                        </li>
+                                                                        <li>
+                                                                                <a  name='raw-tab' href="#put-generic-content-form" data-toggle="tab">Raw data</a>
+                                                                        </li>
+                                                                </ul>
+                                                        {% endif %}
+                                                        <div class="well tab-content">
+                                                                {% if put_form %}
+                                                                        <div class="tab-pane" id="put-object-form">
+                                                                                <form action="{{ request.get_full_path }}"
+                                                                                          method="POST" enctype="multipart/form-data" class="form-horizontal" novalidate>
+                                                                                        <fieldset>
+                                                                                                {{ put_form }}
+                                                                                                <div class="form-actions">
+                                                                                                        <button class="btn btn-primary js-tooltip"
+                                                                                                                         name="{{ api_settings.FORM_METHOD_OVERRIDE }}"
+                                                                                                                        value="PUT" title="Make a PUT request on the {{ name }} resource">PUT</button>
+                                                                                                </div>
+                                                                                        </fieldset>
+                                                                                </form>
+                                                                        </div>
+                                                                {% endif %}
+                                                                <div {% if put_form %}class="tab-pane"{% endif %} id="put-generic-content-form">
+                                                                        {% with form=raw_data_put_or_patch_form %}
+                                                                                <form action="{{ request.get_full_path }}" method="POST" class="form-horizontal">
+                                                                                        <fieldset>
+                                                                                                {% include "rest_framework/raw_data_form.html" %}
+                                                                                                <div class="form-actions">
+                                                                                                        {% if raw_data_put_form %}
+                                                                                                                <button class="btn btn-primary js-tooltip"
+                                                                                                                                 name="{{ api_settings.FORM_METHOD_OVERRIDE }}"
+                                                                                                                                value="PUT" title="Make a PUT request on the {{ name }} resource">PUT</button>
+                                                                                                        {% endif %}
+                                                                                                        {% if raw_data_patch_form %}
+                                                                                                                <button class="btn btn-primary js-tooltip"
+                                                                                                                                 name="{{ api_settings.FORM_METHOD_OVERRIDE }}"
+                                                                                                                                value="PATCH" title="Make a PATCH request on the {{ name }} resource">PATCH</button>
+                                                                                                        {% endif %}
+                                                                                                </div>
+                                                                                        </fieldset>
+                                                                                </form>
+                                                                        {% endwith %}
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        {% endif %}
+                                {% endif %}
+                        </div>
+                        </div>
+                        </div>
+
+                                        </div>
+                        <!-- END Content -->
+                        </div><!-- /.container -->
+                        <div id="info">
+
+                                <a href="http://www.shef.ac.uk">
+
+                                        <img id='footerimg' src="{% static "frontend/UOS.gif" %}" alt="The University of Sheffield">
+
+                                </a>
+
+                                <a href="http://spandh.dcs.shef.ac.uk">
+
+                                        <img id='footerimg' src="{% static "frontend/SPaH.gif" %}" alt="SpandH">
+
+                                </a>
+
+                                <p>
+
+                                        Department of Computer Science <br>
+                                        The University of Sheffield <br>
+                                        Regent Court, 211 Portobello, Sheffield, S1 4DP <br>
+                                        United Kingdom <br>
+                                        Tel: +44 (0) 114 222 1800 | Fax: +44 (0) 114 222 1810 <br>
+
+                                </p>
+                                
+                        </div>
+
+                        <footer>
+<ul id="footer-menu" style='padding-right:30px;,'>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-27 current_page_item menu-item-65"><a href="http://127.0.0.1:8000/about">About Us</a></li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="http://127.0.0.1:8000/news">News</a></li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-69"><a href="http://127.0.0.1:8000/conditions">Conditions of Use</a></li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-70"><a href="http://127.0.0.1:8000/projects">Supporting Projects</a></li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="http://127.0.0.1:8000/research">Research Software</a></li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-429"><a href="http://127.0.0.1:8000/publications">Publications</a></li>
+</ul>
+
+<div id='foo'>
+                                Copyright © 2015
+</div>
+                        </footer>
+
+                        </div>
+                </div><!-- ./wrapper -->
+
+                {% block script %}
+
+                        <script src="{% static "rest_framework/js/jquery-1.8.1-min.js" %}"></script>
+                        <script src="{% static "rest_framework/js/bootstrap.min.js" %}"></script>
+                        <script src="{% static "rest_framework/js/prettify-min.js" %}"></script>
+                        <script src="{% static "rest_framework/js/default.js" %}"></script>
+                {% endblock %}
+        </body>
+        {% endblock %}
+</html>

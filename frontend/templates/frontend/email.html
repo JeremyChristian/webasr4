@@ -1,0 +1,31 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<form action="/email/{{pk}}/" method="POST" enctype="multipart/form-data" class="form-horizontal well" novalidate>
+
+  <fieldset>
+
+    <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+      {% for field in form %}
+        <div class="form_group">
+          {{ field.errors }}
+          <label class="control-label">{{ field.label_tag }}</label>
+          <div class="">
+             {{ field }} 
+            <br>
+          </div>
+        </div>
+      {% endfor %}
+
+
+    <div class="form-actions">
+      
+      <button class="btn btn-primary" title="Send Email">Send</button>
+                          
+    </div>
+                        
+  </fieldset>
+                    
+</form>
+{% endblock %}

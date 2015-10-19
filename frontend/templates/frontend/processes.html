@@ -1,0 +1,41 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<div align='center' style='margin:20px;'>                          
+<table class="table table-hover" style='width:100%;'>
+
+  <thead>
+
+    <tr>
+
+      <td>Created</td>
+      <td>Source</td>
+      <td>Session</td>
+      <td>Name</td>
+      <td>Status</td>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+  {% for process in processes %}
+
+    <tr>
+      <td>{{process.created}}</td>
+      <td>{{process.source}}</td>
+      <td>{{process.session}}</td>
+      <td>{{process.upload.user.first_name}} {{process.upload.user.last_name}}</td>
+      <td>{{process.upload.status}}</td>
+      <td><a href="process/{{process.pk}}">delete</a></td>
+
+    </tr>
+
+  {% endfor %} 
+
+  </tbody>
+
+</table></div>
+
+
+
+{% endblock %}
