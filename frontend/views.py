@@ -28,6 +28,7 @@ from django.contrib.auth import logout
 import re
 import string
 
+
 registration_message = 'This is an email to confirm your WebASR account has been successfully registered. Our admin staff will notify you shortly once your details have been verified.'
 confirmation_message = 'Your webasr account has now been activated, go to www.webasr.org to sign in.'
 
