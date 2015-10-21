@@ -38,6 +38,7 @@
     <tr style='border:20px;'>
 
       <th>Name</th>
+      <th>Systems</th>
       <th>Number of Users</th>
       <th>Email Group</th>
       <th>View Users</th>
@@ -53,6 +54,9 @@
     <tr>
 
       <td>{{query.name}}</td>
+      <td>{% for system in query.system_set.all %} 
+        {{system.name}}
+        {%endfor%}
       <td>{{num}}</td>
       <td><a href="email/{{query.pk}}">email</a></td>
       <td><a href="grouplist/{{query.pk}}">view</a></td>

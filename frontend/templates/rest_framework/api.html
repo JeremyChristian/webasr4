@@ -53,12 +53,12 @@
                                 <!--logo-image-->
                                 <nav id="main-nav">
 
-
-
-
-{% if request.user.is_staff == True %}
 <div class = 'dropdown'>
 <ul id="main-menu" class="clearfix sf-js-enabled sf-arrows">
+
+{% if request.user.is_staff == True %}
+
+
 
 <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page dropdown-toggle"  data-toggle="dropdown"><a data-description=""><i data-icon="<U+F0C0>"></i><span>Admin Activities</span></a></li>
 
@@ -69,27 +69,37 @@
         <li id="menu-item-70" class="dmi menu-item menu-item-type-post_type menu-item-object-page"><a href="/groups" data-description=""><i data-icon="<U+F10A>"></i><span>User Groups</span></a></li>
 </ul>
 
+
+{%endif%}
+
+{% if request.user.is_authenticated %}
+
 <li id="menu-item-429" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/newupload" data-description=""><i data-icon="<U+F019>"></i><span>New Upload</span></a></li>
 
 <li id="menu-item-70" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/uploads/{{user.pk}}" data-description=""><i data-icon="<U+F10A>"></i><span>Upload List</span></a></li>
 
 <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/account" data-description=""><i data-icon="<U+F069>"></i><span>Account</span></a></li>
 
-</div>
-{%endif%}
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/signout" data-description=""><i data-icon="<U+F069>"></i><span>Signout</span></a></li>
 
 
-{% if request.user.is_authenticated %}
+{%else%}
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/login" data-description=""><i data-icon="<U+F069>"></i><span>Sign In</span></a></li>
+
+<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/register" data-description=""><i data-icon="<U+F069>"></i><span>Register</span></a></li>
 
 {% endif %}
+
+</ul>
+</div>
 <!-- <div class = 'dropdown'>
         <li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page dropdown-toggle"  data-toggle="dropdown"><a data-description=""><i data-icon="<U+F0C0>"></i><span>Audio Uploads</span></a></li>
 
 
-<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/signout" data-description=""><i data-icon="<U+F069>"></i><span>Signout</span></a></li>
 
-<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/login" data-description=""><i data-icon="<U+F069>"></i><span>Sign In</span></a></li>
-<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/register" data-description=""><i data-icon="<U+F069>"></i><span>Register</span></a></li>
+
+
 
 </ul><div id="mobile-menu" class="menu-menu-1-container"><span>Menu</span><ul id="toggle-view-menu">
 

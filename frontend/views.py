@@ -221,12 +221,19 @@ class SystemDetail(DetailView):
         print self.get_object()
         template = loader.get_template('frontend/system_detail.html')
         form = SystemEditForm(instance=self.get_object())
+        form.fields['allowed_groups'].initial = [('','')]
         return HttpResponse(render(request,'frontend/system_detail.html',{'form':form,'object':self.get_object()}))
 
     def post(self,request,pk):
         form = SystemEditForm(instance=self.get_object(),data=request.POST)
-
         if form.is_valid():
+            new_group = form.cleaned_data.pop('allowed_groups')
+            if new_group != '':
+                form.save()
+                view_object = self.get_object()
+                view_object.allowed_groups.add(Group.objects.get(name=new_group))
+                view_object.save()
+                return HttpResponseRedirect('/system/'+str(view_object.pk)+'/')
             form.save()
             return HttpResponseRedirect('/systems')
         else:

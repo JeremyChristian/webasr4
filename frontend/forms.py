@@ -29,6 +29,10 @@ class SystemForm(forms.Form):
     command = forms.CharField(max_length=200)
 
 class SystemEditForm(forms.ModelForm):
+    choices = [(group.name,group.name) for group in Group.objects.all()]
+    choices = [('','')] + choices
+    allowed_groups = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}), choices=choices, required = False)
+
     class Meta:
         model = System
         fields = ('name','language','environment','command')
