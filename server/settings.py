@@ -94,8 +94,8 @@ DATABASES = {
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'webasr2@gmail.com'
-EMAIL_HOST_PASSWORD = 'asr4daweb'
+EMAIL_HOST_USER = 'webasr@sheffield.ac.uk'
+EMAIL_HOST_PASSWORD = 'cnny6wby'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
