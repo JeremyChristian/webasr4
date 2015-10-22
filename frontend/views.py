@@ -466,6 +466,17 @@ class CreateUpload(View):
         if not request.user.is_authenticated():
             return HttpResponseRedirect('/login')
         form = UploadForm()
+        
+        system_list = set()
+
+        
+        for group in request.user.groups.all():
+            for system in group.system_set.all():
+                system_list.add((system.name,system.name))
+
+        system_list.add(('',''))
+      
+        form.fields['systems'].choices = system_list
         systemObjects = System.objects.all()
         languages = set()
         systems = set()

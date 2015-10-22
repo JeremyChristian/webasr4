@@ -31,7 +31,7 @@ APPEND_SLASH = True
 
 # Application definition
 
-# AUTHENTICATION_BACKENDS = ('frontend.backends.CaseInsensitiveModelBackend',)
+AUTHENTICATION_BACKENDS = ('frontend.backends.CaseInsensitiveModelBackend',)
 
 
 INSTALLED_APPS = (

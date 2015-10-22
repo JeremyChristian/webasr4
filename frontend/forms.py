@@ -21,6 +21,8 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext, ugettext_lazy as _
 from frontend.models import *
 
+
+
 class SystemForm(forms.Form):
 
     name = forms.CharField(max_length=100)
@@ -83,6 +85,10 @@ class UserEditForm(forms.ModelForm):
         model = CustomUser
         fields = ('email','first_name','last_name','title','department','organisation','address1','address2','city','country','postcode','telephone','fax','dob')
 
+class CustomEmailField(forms.EmailField):  
+    def to_python(self, value):
+        return value.lower()
+
 class UserCreationForm(forms.ModelForm):
     """
     A form that creates a user, with no privileges, from the given username and
@@ -96,6 +102,7 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(label=_("Password confirmation"),
         widget=forms.PasswordInput,
         help_text=_("Enter the same password as above, for verification."))
+    email = CustomEmailField(label=_('Email'), widget = forms.EmailInput, help_text=_('Enter your email.'))
 
     class Meta:
         model = CustomUser
@@ -116,4 +123,4 @@ class UserCreationForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
-        return userq
+        return user
