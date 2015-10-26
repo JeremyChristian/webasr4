@@ -8,11 +8,11 @@
     <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
 
       {% for field in form %}
-      {% if field.label_tag == '<label for="id_allowed_groups">Allowed groups:</label>' %}
+      {% if field.label_tag == '<label for="id_allowed_groups">Allowed groups:</label>' or field.label_tag == '<label for="id_description">Description:</label>' %}
 
        <div class="form_group">
           {{ field.errors }}
-          <label class="col-sm-2 control-label "><label for="id_allowed_groups">Add group:</label></label>
+          <label class="col-sm-2 control-label ">{{ field.label_tag }}</label>
           <div class="col-sm-10">
             {{ field }} 
             <br>
@@ -35,7 +35,7 @@
           <label class="col-sm-2 control-label ">Assigned groups:</label>
           <div class="col-sm-10">
             {%for group in object.allowed_groups.all%}
-            {{group.name}},
+            <a href="/ungroup_system/{{object.pk}}/{{group.pk}}">{{group.name}}</a>,
             {%endfor%}
             <br>
             <br>

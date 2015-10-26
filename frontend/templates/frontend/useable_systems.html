@@ -1,0 +1,28 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+<body>
+
+<table class="table table-hover" style='border:20px;'>
+
+  <tbody>
+
+  {% for system in systemlist %}
+
+    <tr>
+      <div class='well'>
+      <p sytle='font-weight: bold;'>Name: </h>{{system.name}}<br>
+      {{system.language}}<br>
+      {{system.environment}}<br>
+      {{system.description}}<br>
+    </div>
+    </tr>
+
+  {% endfor %} 
+
+  </tbody>
+
+</table>
+
+</body>     
+
+{% endblock %}

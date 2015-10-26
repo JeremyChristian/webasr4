@@ -22,6 +22,9 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from frontend.models import *
 
 
+class SystemHTMLForm(forms.Form):
+    html = forms.CharField(widget=forms.Textarea(attrs={'rows': '30',}))
+    
 
 class SystemForm(forms.Form):
 
@@ -34,10 +37,11 @@ class SystemEditForm(forms.ModelForm):
     choices = [(group.name,group.name) for group in Group.objects.all()]
     choices = [('','')] + choices
     allowed_groups = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}), choices=choices, required = False)
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': '10',}))
 
     class Meta:
         model = System
-        fields = ('name','language','environment','command')
+        fields = ('name','language','environment','command','description')
 
 class GroupForm(forms.ModelForm):
     class Meta:

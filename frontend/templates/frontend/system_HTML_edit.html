@@ -1,0 +1,32 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+<form align='center' action="/system_HTML/{{object.pk}}/" method="POST" enctype="multipart/form-data" class="form-horizontal well" novalidate>
+
+  <fieldset>
+      <h1><label class=" control-label ">HTML:</label></h1>
+    <input type='hidden' name='csrfmiddlewaretoken' value='wSN8D5j2pFr0YyuzU7wJFGkb5gck9G5j'/>    
+
+      {% for field in form %}
+
+         <div class="form_group">
+          {{ field.errors }}
+          
+          <div class="">
+            {{ field }} 
+            <br>
+          </div>
+        </div>
+      {% endfor %}
+
+
+    <div class="form-actions">
+      
+      <button class="btn btn-primary" title="Upload System to WebASR">Update</button>
+                          
+    </div>
+                        
+  </fieldset>
+                    
+</form>
+{% endblock %}

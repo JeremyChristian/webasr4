@@ -209,6 +209,14 @@ def ungroup_users(request):
 
 """                     --------------------- SYSTEM CONTROL --------------------                    """
 
+class SystemList(View):
+    def get(self,request):
+        systemlist = []
+        if request.user.is_authenticated():
+            for system in System.objects.all():
+                if set(request.user.groups.all()).intersection(system.allowed_groups.all()) != ([]):
+                    systemlist.append(system)
+        return HttpResponse(render(request,'frontend/useable_systems.html',{'systemlist':systemlist,}))
 
 class SystemDetail(DetailView):
 
@@ -238,6 +246,42 @@ class SystemDetail(DetailView):
             return HttpResponseRedirect('/systems')
         else:
             return render(request, 'frontend/system_detail.html', {'form': form,'object':self.get_object()},)
+
+class SystemHTML(DetailView):
+    model = System
+    def get(self,request,pk):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/login')
+        form = SystemHTMLForm()
+        form.fields['html'].initial=self.get_object().html
+        return render(request, 
+            'frontend/System_HTML_edit.html', 
+            {'form': form,'object':self.get_object()})
+    def post(self,request,pk):
+        form = SystemHTMLForm(data=request.POST)
+        if form.is_valid():
+            html = form.cleaned_data.get('html')
+            system = self.get_object()
+            system.html = html
+            system.save()
+            system_html = open('storage/system_html/system_'+str(pk)+'.html','w')
+            system_html.write(html)
+            system_html.close()
+            
+            return HttpResponseRedirect('/systems')
+        else:
+            return render(request, 'frontend/system_HTML_edit.html', {'form': form,'object':self.get_object()},)
+
+def ungroup_system(request,pk,grp):
+    if not request.user.is_staff:
+        return HttpResponseRedirect('/login')
+    sys = System.objects.get(pk=pk)
+    sys.allowed_groups.remove(Group.objects.get(pk=grp))
+    sys.save()
+    return HttpResponseRedirect('/system/'+str(pk))
+
+def show_system(request,pk):
+    return render(request, 'frontend/system_show.html', {'html':System.objects.get(pk=pk).html})
 
 def system_delete(request,pk):
     System.objects.get(pk=pk).delete()
@@ -507,11 +551,16 @@ def user_login(request):
             return HttpResponseRedirect('/newupload')
     else:
         form = forms.AuthenticationForm()
-
-    return render(request, 'frontend/authentication.html', {'form': form})
+    systems = []
+    for system in System.objects.all():
+        if Group.objects.get(name='basic_system') in system.allowed_groups.all():
+            systems.append(system)
+    news = open('frontend/templates/frontend/news.html','r').read()
+    return render(request, 'frontend/authentication.html', {'form': form, 'systemlist':systems, 'news':news,})
 
 class Authentication(View):
     def get(self,request):
+
         return HttpResponseRedirect('/login')
 
 class Logout(View):

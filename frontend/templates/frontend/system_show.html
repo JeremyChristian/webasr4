@@ -1,0 +1,6 @@
+{% extends 'rest_framework/api.html' %} 
+{% block content %}
+
+{% autoescape off %}{{ html | safe }}{% endautoescape %}
+
+{% endblock %}
