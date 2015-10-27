@@ -194,6 +194,7 @@ def grouplist(request,pk):
 
         context = RequestContext(request, {
         'queryset': queryset,
+        'query':Group.objects.get(pk=pk),
         })
         return HttpResponse(template.render(context))
 
@@ -202,9 +203,21 @@ def group_users(request):
     if not request.user.is_staff:
         return HttpResponseRedirect('/login')
 
-def ungroup_users(request):
+def ungroup_users(request,pk):
     if not request.user.is_staff:
         return HttpResponseRedirect('/login')
+    group = Group.objects.get(name=request.POST.__getitem__('group'))
+    request.POST.pop('group')
+    
+    try:
+        for i in request.POST.itervalues():
+
+            user = CustomUser.objects.get(email=i)
+            user.groups.remove(group)
+    except:
+        pass
+
+    return HttpResponseRedirect('/grouplist/'+str(pk)+'/')
 
 
 """                     --------------------- SYSTEM CONTROL --------------------                    """
