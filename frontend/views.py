@@ -556,7 +556,8 @@ def user_login(request):
         if Group.objects.get(name='basic_system') in system.allowed_groups.all():
            systems.append(system)
 	    
-	news = open( os.path.dirname(__file__),'w')
+	news = NewsEntry.objects.all()[0].html
+
     return render(request, 'frontend/authentication.html', {'form': form, 'systemlist':systems, 'news':news,})
 
 class Authentication(View):
