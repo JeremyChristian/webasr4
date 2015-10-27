@@ -268,7 +268,7 @@ class SystemHTML(DetailView):
         form = SystemHTMLForm()
         form.fields['html'].initial=self.get_object().html
         return render(request, 
-            'frontend/System_HTML_edit.html', 
+            'frontend/system_HTML_edit.html', 
             {'form': form,'object':self.get_object()})
     def post(self,request,pk):
         form = SystemHTMLForm(data=request.POST)
