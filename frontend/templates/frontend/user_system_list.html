@@ -10,12 +10,11 @@
   {% for system in systemlist %}
 
     <tr>
-      <td style='width:25%'>Name: {{system.name}}
+      <td style='width:30%'>Name: {{system.name}}
         <br>Language: {{system.language}}
         <br>Environment: {{system.environment}}
       </td>
       <td style='width:70%'>{{system.description}}</td>
-      <td style='width:5%'><a href='/show_system/{{system.pk}}'>more info</a></td>
     </tr>
 
   {% endfor %} 

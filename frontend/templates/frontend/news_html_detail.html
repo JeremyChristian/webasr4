@@ -1,7 +1,7 @@
 {% extends 'rest_framework/api.html' %} 
 {% block content %}
 
-<form align='center' action="/system_HTML/{{object.pk}}/" method="POST" enctype="multipart/form-data" class="form-horizontal well" novalidate>
+<form align='center' action="/edit_news/{{object.pk}}/" method="POST" enctype="multipart/form-data" class="form-horizontal well" novalidate>
 
   <fieldset>
       <h1><label class=" control-label ">Update :</label></h1>
@@ -22,7 +22,7 @@
 
     <div class="form-actions">
       
-      <button class="btn btn-primary" title="Upload System to WebASR">Update</button>
+      <button class="btn btn-primary" title="Change News">Update</button>
                           
     </div>
                         

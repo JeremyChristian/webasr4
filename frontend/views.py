@@ -264,13 +264,32 @@ class SystemHTML(DetailView):
             system = self.get_object()
             system.html = html
             system.save()
-            system_html = open('storage/system_html/system_'+str(pk)+'.html','w')
-            system_html.write(html)
-            system_html.close()
             
             return HttpResponseRedirect('/systems')
         else:
             return render(request, 'frontend/system_HTML_edit.html', {'form': form,'object':self.get_object()},)
+
+class NewsHTML(DetailView):
+    model = NewsEntry
+    def get(self,request,pk):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/login')
+        form = NewsHTMLForm()
+        form.fields['html'].initial=self.get_object().html
+        return render(request, 
+            'frontend/news_html_detail.html', 
+            {'form': form,'object':self.get_object()})
+    def post(self,request,pk):
+        form = NewsHTMLForm(data=request.POST)
+        if form.is_valid():
+            html = form.cleaned_data.get('html')
+            news = self.get_object()
+            news.html = html
+            news.save()
+            
+            return HttpResponseRedirect('/login')
+        else:
+            return render(request, 'frontend/news_html_detail.html', {'form': form,'object':self.get_object()},)
 
 def ungroup_system(request,pk,grp):
     if not request.user.is_staff:

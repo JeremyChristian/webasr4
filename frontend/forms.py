@@ -25,6 +25,8 @@ from frontend.models import *
 class SystemHTMLForm(forms.Form):
     html = forms.CharField(widget=forms.Textarea(attrs={'rows': '30',}))
     
+class NewsHTMLForm(forms.Form):
+    html = forms.CharField(widget=forms.Textarea(attrs={'rows': '30',}))
 
 class SystemForm(forms.Form):
 
