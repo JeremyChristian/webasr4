@@ -373,7 +373,7 @@ def process_delete_view(request,pk):
 def download(request,pk):
     if not request.user.is_authenticated():
             return HttpResponseRedirect('/login')
-    upload = Upload.objects.filter(pk=pk)
+    upload = OutputFile.objects.filter(pk=pk)
     response = HttpResponse(upload[0].transcripts, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename='+upload[0].created.isoformat()+'_Transcript.zip'
     return response
@@ -398,7 +398,7 @@ class UploadDetail(DetailView):
 class UpdateUpload(View):
     def post(self,request):
         
-        transcript = request.FILES.__getitem__('upload')
+        transcripts = request.FILES.all()
         userpk = request.POST.__getitem__('source').lstrip('0')
         
         session = request.POST.__getitem__('session')
@@ -410,8 +410,9 @@ class UpdateUpload(View):
             timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
             
             if timestamp == session:
-                upload.transcripts = transcript
-                upload.save()
+                for transcript in transcripts:
+                    output = OutputFile(upload=upload,transcript=transcript)
+                    output.save()
                 process = Process.objects.get(upload=upload)
                 process_delete(process.pk)
                 return HttpResponse('success\n')

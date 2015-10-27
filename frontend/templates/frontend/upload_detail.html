@@ -45,7 +45,10 @@
       </tr>
 
       <tr>
-        <td style='width:25%;' align = "right" >File Download:</td><td style='width:75%;'><a href='/download/{{object.pk}}'>{{object.transcripts}}</a></td>
+        <td style='width:25%;' align = "right" >File Download:</td>
+
+        {% for file in object.outputfile_set.all() %}
+        <td style='width:75%;'><a href='/download/{{file.pk}}'>{{file.transcript}}</a></td>
       </tr>
   
   </tbody>
