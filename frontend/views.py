@@ -27,7 +27,7 @@ from django.contrib.auth import authenticate, login, forms
 from django.contrib.auth import logout
 import re
 import string
-
+import os
 
 registration_message = 'This is an email to confirm your WebASR account has been successfully registered. Our admin staff will notify you shortly once your details have been verified.'
 confirmation_message = 'Your webasr account has now been activated, go to www.webasr.org to sign in.'
@@ -554,8 +554,9 @@ def user_login(request):
     systems = []
     for system in System.objects.all():
         if Group.objects.get(name='basic_system') in system.allowed_groups.all():
-            systems.append(system)
-    news = open('frontend/templates/frontend/news.html','r').read()
+           systems.append(system)
+	    
+	news = open( os.path.dirname(__file__),'w')
     return render(request, 'frontend/authentication.html', {'form': form, 'systemlist':systems, 'news':news,})
 
 class Authentication(View):
@@ -619,4 +620,3 @@ class Research(View):
 class Publications(View):
     def get(self,request):
         return render(request,'frontend/publications.html')
-
