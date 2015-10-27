@@ -406,7 +406,7 @@ class UploadDetail(DetailView):
             file_search = file_regex.search(audiofile.audiofile.url)
             if file_search:
                 audiofiles.append(file_search.group(1))
-        return HttpResponse(render(request,'frontend/upload_detail.html',{'audiofiles':audiofiles,'object':self.get_object()}))
+        return HttpResponse(render(request,'frontend/upload_detail.html',{'audiofiles':audiofiles,'object':self.get_object(),'outputs':self.get_object().outputfile_set.all()}))
 
 class UpdateUpload(View):
     def post(self,request):

@@ -1,33 +1,47 @@
 {% extends 'rest_framework/api.html' %} 
 {% block content %}
 
-<table class="table well" style='margin-top:20px;'>
-        <thead>
-            <tr>
-              <td>Created</td>
-              <td>File</td>
-              <td>Metadata</td>
-              <td>System</td>
-            </tr>
-        </thead>
+<h1 align='center' style='padding:10px;'>Audio Upload List</h1>
+<p align='center'> Audio Transcripts of completed uploads are located in the Details section of the upload list.</p>
+<div class='well'>
+<table class="table table-hover" style='border:20px; width:100%;'>
 
-        <tbody>
+  <thead style='border:20px;'>
 
-          <!-- {% for x in somedata %} -->
+    <tr style='border:20px;'>
 
-            <tr style='margin: 50px;' class = "">
-              <td style="width: 25%,padding:5px;">{{x.date}}</td>
-              <td style="width: 25%,padding:5px;">{{x.filename}}</td>
-              <td style="width: 25%,padding:5px;">{{x.metaname}}</td>
-              <td style="width: 25%,padding:5px;">{{x.systems}}</td>
-            </tr>
+      <td style='width:15%;'>Created</td>
+      <td style='width:65%;'>Files Uploaded</td>
+      <td style='width:15%;'>Status</td>
+      <td style='width:10%;'>Details</td>
+    </tr>
 
-        <!--   {% endfor %} -->
+  </thead>
 
-        </tbody>
-      </table>
+  <tbody>
 
+  {% for upload, audio in uploads %}
 
+    <tr>
+
+      <td >{{upload.created}}</td>
+
+      <td>
+        {% for file in audio %}
+          {{file}}<br>
+        {% endfor %}
+      </td>
+      <td >{{upload.status}}</td>
+      <td ><a href="/upload/{{upload.pk}}">view</a></td>
+    </tr>
+
+  {% endfor %} 
+
+  </tbody>
+
+</table>
+
+</div>
 
 
 
