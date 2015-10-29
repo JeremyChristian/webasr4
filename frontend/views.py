@@ -392,9 +392,9 @@ def process_update(request):
 def download(request,pk):
     if not request.user.is_authenticated():
             return HttpResponseRedirect('/login')
-    upload = OutputFile.objects.filter(pk=pk)
-    response = HttpResponse(upload[0].transcripts, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename='+upload[0].created.isoformat()+'_Transcript.zip'
+    output = OutputFile.objects.get(pk=pk)
+    response = HttpResponse(output.transcript, content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.zip'
     return response
 
 class UploadDetail(DetailView):
