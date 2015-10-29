@@ -522,11 +522,11 @@ class CreateUpload(View):
            
             timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
             filename = 'src-'+pk+'_ses-'+timestamp
-
-            fabfile.process_execute(localpaths,filename,command)
-
             process = Process(source=pk,session=timestamp,upload=upload)
             process.save()
+            fabfile.process_execute(localpaths,filename,command)
+
+            
             
             return HttpResponseRedirect('/newupload')
 
