@@ -359,6 +359,7 @@ class ListProcess(View):
             return HttpResponseRedirect('/login')
 
         processes = Process.objects.all()
+        
         template = loader.get_template('frontend/processes.html')
         context = RequestContext(request, {
         'processes': processes,
@@ -388,6 +389,8 @@ def process_update(request):
             process = Process.objects.get(upload=upload)
             process_id = ProcessId(process=process,processid=request.POST.get('status'))
             process_id.save()
+            return HttpResponse('success\n')
+
 
 
 """                     --------------------- UPLOAD HANDLING --------------------                   """
