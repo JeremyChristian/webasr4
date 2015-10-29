@@ -359,19 +359,19 @@ class ListProcess(View):
             return HttpResponseRedirect('/login')
 
         processes = Process.objects.all()
-        
+
         template = loader.get_template('frontend/processes.html')
         context = RequestContext(request, {
         'processes': processes,
         })
         return HttpResponse(template.render(context))
 
-def process_delete(pk):
+def process_delete(request,pk):
     process = Process.objects.get(pk=pk)
     process_ids = ProcessId.objects.filter(process=process)
-    for process_id in process_ids:
-        process_id.delete()
-    process.delete()
+    process_id_list = ids.processid for ids in process_ids
+    fabfile.process_kill(process_id_list)
+    # process.delete()
 
 def process_delete_view(request,pk):
     process_delete(pk)
