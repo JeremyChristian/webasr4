@@ -46,9 +46,9 @@
 
       <tr>
         <td style='width:25%;' align = "right" >File Download:</td>
-
-        {% for file in output.all %}
-        <td style='width:75%;'><a href='/download/{{file.pk}}'>{{file.transcript}}</a></td>
+</tr>
+        {% for file in outputs %}
+        <tr><td style='width:75%;'><a href='/download/{{file.pk}}'>{{file.transcript}}</a></td>
         {% endfor %}
       </tr>
   
