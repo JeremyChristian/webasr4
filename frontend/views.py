@@ -364,6 +364,7 @@ class ListProcess(View):
         'processes': processes,
         })
         return HttpResponse(template.render(context))
+
 def process_delete(pk):
     process = Process.objects.get(pk=pk)
     process_ids = ProcessId.objects.filter(process=process)
@@ -378,6 +379,11 @@ def process_delete_view(request,pk):
     upload.status = 'Aborted'
     upload.save()
     return HttpResponseRedirect('/processes')
+
+def process_update(request):
+    process = Process.objects.get(source=request.POST.get('source'),session=request.POST.get('session'))
+    process_id = ProcessId(process=process,processid=request.POST.get('status'))
+    process_id.save()
 
 
 """                     --------------------- UPLOAD HANDLING --------------------                   """
@@ -411,7 +417,6 @@ class UploadDetail(DetailView):
 class UpdateUpload(View):
     def post(self,request):
         
-        transcripts = request.FILES.all()
         userpk = request.POST.__getitem__('source').lstrip('0')
         
         session = request.POST.__getitem__('session')
@@ -423,8 +428,8 @@ class UpdateUpload(View):
             timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
             
             if timestamp == session:
-                for transcript in transcripts:
-                    output = OutputFile(upload=upload,transcript=transcript)
+                for key in request.FILES:
+                    output = OutputFile(upload=upload,transcript=request.FILES.get(key))
                     output.save()
                 process = Process.objects.get(upload=upload)
                 process_delete(process.pk)
