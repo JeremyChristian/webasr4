@@ -382,13 +382,12 @@ def process_delete_view(request,pk):
 
 def process_update(request):
     uploads = Upload.objects.all()
-
-        for upload in uploads:
-            timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
-            if timestamp == request.POST.get('session'):
-                process = Process.objects.get(upload=upload)
-                process_id = ProcessId(process=process,processid=request.POST.get('status'))
-                process_id.save()
+    for upload in uploads:
+        timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
+        if timestamp == request.POST.get('session'):
+            process = Process.objects.get(upload=upload)
+            process_id = ProcessId(process=process,processid=request.POST.get('status'))
+            process_id.save()
 
 
 """                     --------------------- UPLOAD HANDLING --------------------                   """
