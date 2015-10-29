@@ -381,7 +381,7 @@ def process_delete_view(request,pk):
     return HttpResponseRedirect('/processes')
 
 def process_update(request):
-    process = Process.objects.get(source=request.POST.get('source'),session=request.POST.get('session'))
+    process = Process.objects.get(source=request.POST.__getitem__('source'),session=request.POST.__getitem__('session'))
     process_id = ProcessId(process=process,processid=request.POST.get('status'))
     process_id.save()
 
