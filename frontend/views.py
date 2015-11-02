@@ -397,8 +397,8 @@ def download(request,pk):
     if not request.user.is_authenticated():
             return HttpResponseRedirect('/login')
     output = OutputFile.objects.get(pk=pk)
-    response = HttpResponse(output.transcript, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.zip'
+    response = HttpResponse(output.transcript,)
+    response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript'
     return response
 
 class UploadDetail(DetailView):
