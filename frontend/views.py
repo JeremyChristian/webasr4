@@ -368,10 +368,7 @@ class ListProcess(View):
 
 def process_delete(request,pk):
     process = Process.objects.get(pk=pk)
-    process_ids = ProcessId.objects.filter(process=process)
-    process_id_list = ids.processid for ids in process_ids
-    fabfile.process_kill(process_id_list)
-    # process.delete()
+    process.delete()
 
 def process_delete_view(request,pk):
     process_delete(pk)
@@ -389,7 +386,7 @@ def process_update(request):
             process = Process.objects.get(upload=upload)
             process_id = ProcessId(process=process,processid=request.POST.get('status'))
             process_id.save()
-            return HttpResponse('success\n')
+    return HttpResponse('success\n')
 
 
 
