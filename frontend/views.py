@@ -401,9 +401,9 @@ def download(request,pk):
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
     file_search = file_regex.search(output.transcript.url)
     if file_search:
-        response = HttpResponse(output.transcript,content_type='application/'+file_search[0])
-        response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search[0]
-        return response
+        # response = HttpResponse(output.transcript,content_type='application/'+file_search[0])
+        # response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search[0]
+        return HttpResponse(file_search)
 
 class UploadDetail(DetailView):
     model = Upload
