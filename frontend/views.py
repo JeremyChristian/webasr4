@@ -403,7 +403,7 @@ def download(request,pk):
     if file_search:
         # response = HttpResponse(output.transcript,content_type='application/'+file_search[0])
         # response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search[0]
-        return HttpResponse(file_search)
+        return HttpResponse(file_search[0])
 
 class UploadDetail(DetailView):
     model = Upload
