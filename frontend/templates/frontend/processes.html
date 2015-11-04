@@ -26,10 +26,6 @@
       <td>{{process.session}}</td>
       <td>{{process.upload.user.first_name}} {{process.upload.user.last_name}}</td>
       <td>{{process.upload.status}}</td>
-     {% for id in process.processid_set.all %}
-         <td>{{id.processid}}</td>
-         {%endfor%}
-      <td><a href="process/{{process.pk}}">delete</a></td>
 
     </tr>
 
