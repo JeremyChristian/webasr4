@@ -443,11 +443,11 @@ def uploadlist(request,pk):
     for upload in uploadlist:
         files = []
         for audiofile in Audiofile.objects.filter(upload = upload):
-            file_start = '_(?:.(?!_))+\.'
-            file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
-            file_search = file_regex.search(audiofile.audiofile.url)
-            if file_search:
-                files.append(file_search.group(1))
+            # file_start = '_(?:.(?!_))+\.'
+            # file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
+            # file_search = file_regex.search(audiofile.audiofile.url)
+            # if file_search:
+            #     files.append(file_search.group(1))
             file_start = '([^/]*\.wav)'
             file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
             file_search = file_regex.search(audiofile.audiofile.url)
