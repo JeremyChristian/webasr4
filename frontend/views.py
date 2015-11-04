@@ -368,7 +368,8 @@ class ListProcess(View):
 
 def process_delete(request,pk):
     process = Process.objects.get(pk=pk)
-    process.delete()
+    process_kill(process.source,process.session)
+    # process.delete()
 
 def process_delete_view(request,pk):
     process_delete(pk)
