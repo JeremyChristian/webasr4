@@ -366,14 +366,10 @@ class ListProcess(View):
         })
         return HttpResponse(template.render(context))
 
-def process_delete(request,pk):
-    process = Process.objects.get(pk=pk)
-    process_kill(process.source,process.session)
-    # process.delete()
 
 def process_delete_view(request,pk):
-    process_delete(pk)
     process = Process.objects.get(pk=pk)
+    process_kill(process.source,process.session)
     upload = process.upload
     upload.status = 'Aborted'
     upload.save()
