@@ -473,10 +473,10 @@ class CreateUpload(View):
 
         if not request.FILES:
             print
-            return HttpResponse('/newupload')
+            return HttpResponseRedirect('/newupload')
             
         if not 'file1' in request.FILES:
-            return HttpResponse('/newupload')
+            return HttpResponseRedirect('/newupload')
 
 
         
