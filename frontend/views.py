@@ -388,8 +388,7 @@ def download(request,pk):
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
     file_search = file_regex.search(output.transcript.url)
     if file_search:
-        response = HttpResponse(output.transcript,content_type='application/'+file_search.group(0))
-        response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search.group(0)
+        response = HttpResponse(output.transcript.open())
         return response
 
 class UploadDetail(DetailView):
@@ -482,6 +481,7 @@ class CreateUpload(View):
         
         elif form.is_valid():
             upload = Upload(
+
                 user = request.user,
                 language = form.cleaned_data['language'],
                 environment = form.cleaned_data['environment'],
