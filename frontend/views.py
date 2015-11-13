@@ -387,7 +387,7 @@ def download(request,pk):
     file_start = '[a-z]{3}$'
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
     file_search = file_regex.search(output.transcript.url)
-    a = output.transcript.open()
+    a = open(output.transcript.url)
     if file_search:
         response = HttpResponse(a.read())
         a.close()
