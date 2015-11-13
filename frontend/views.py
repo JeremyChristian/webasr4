@@ -381,8 +381,8 @@ def process_delete_view(request,pk):
 
 
 def download(request,pk):
-    if not request.user.is_authenticated():
-            return HttpResponseRedirect('/login')
+    # if not request.user.is_authenticated():
+    #         return HttpResponseRedirect('/login')
     output = OutputFile.objects.get(pk=pk)
     file_start = '[a-z]{3}$'
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
