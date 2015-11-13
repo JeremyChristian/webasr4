@@ -387,10 +387,10 @@ def download(request,pk):
     file_start = '[a-z]{3}$'
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
     file_search = file_regex.search(output.transcript.url)
-    a = open(output.transcript.url)
+    
     if file_search:
-        response = HttpResponse(a.read())
-        a.close()
+        response = HttpResponse(output.transcript,content_type='application/'+file_search.group(0))
+        response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search.group(0)
         return response
 
 class UploadDetail(DetailView):
