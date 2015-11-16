@@ -553,7 +553,7 @@ class CreateUpload(View):
 
             
             
-            return HttpResponse('FOUR')
+            return HttpResponse(user)
 
         else:
             systemObjects = System.objects.all()
