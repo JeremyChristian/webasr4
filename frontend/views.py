@@ -497,7 +497,7 @@ class CreateUpload(View):
             except:
                 return HttpResponse('ONE')
         
-        user = request.user
+        
         
         if not request.FILES:
             return HttpResponse('TWO')
