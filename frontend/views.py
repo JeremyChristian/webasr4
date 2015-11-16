@@ -401,7 +401,7 @@ def getFile(request):
     except:
         return HttpResponse('username / password incorrect \n')
 
-    for upload in uploads:
+    for upload in Upload.objects.all():
         timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
         if timestamp == ses and user == upload.user:
             output = Audiofile.objects.filter(upload = upload)[0]
