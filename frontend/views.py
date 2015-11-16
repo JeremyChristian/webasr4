@@ -507,6 +507,7 @@ class CreateUpload(View):
 
             try:
                 user = request.user
+                return HttpResponse(user)
             except:
                 user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
 
