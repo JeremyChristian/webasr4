@@ -381,8 +381,8 @@ def process_delete_view(request,pk):
 
 
 def download(request,pk):
-    # if not request.user.is_authenticated():
-    #         return HttpResponseRedirect('/login')
+    if not request.user.is_authenticated():
+            return HttpResponseRedirect('/login')
     output = OutputFile.objects.get(pk=pk)
     file_start = '[a-z]{3}$'
     file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
@@ -392,6 +392,28 @@ def download(request,pk):
         response = HttpResponse(output.transcript,content_type='application/'+file_search.group(0))
         response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search.group(0)
         return response
+
+def getFile(request):
+    src = request.POST.__getitem__('src').lstrip('0')
+    ses = request.POST.__getitem__('ses')
+    try:
+        user = CustomUser.objects.get(email=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+    except:
+        return HttpResponse('username / password incorrect \n')
+
+    for upload in uploads:
+        timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
+        if timestamp == ses && user == upload.user:
+            output = Audiofile.objects.filter(upload = upload)[0]
+            file_start = '[a-z]{3}$'
+            file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
+            file_search = file_regex.search(output.transcript.url)
+            
+            if file_search:
+                response = HttpResponse(output.transcript,content_type='application/'+file_search.group(0))
+                response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search.group(0)
+                return response
+    return HttpResponse('failure\n')
 
 class UploadDetail(DetailView):
     model = Upload
