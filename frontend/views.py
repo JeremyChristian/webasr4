@@ -496,16 +496,14 @@ class CreateUpload(View):
                 user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
             except:
                 return HttpResponse('ONE')
-        
-        
-        
+        else:
+            user = request.user
+            
         if not request.FILES:
             return HttpResponse('TWO')
             
         if not 'file1' in request.FILES:
             return HttpResponse('THREE')
-
-        
         
         elif form.is_valid():
 
