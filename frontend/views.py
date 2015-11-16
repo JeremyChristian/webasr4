@@ -575,11 +575,11 @@ class CreateUpload(View):
             # return render(request, 'frontend/newupload.html', context)  
             return HttpResponseRedirect('FIVE')
 
-        return HttpResponse(message)
+        return HttpResponse("SIX")
     
     def get(self,request):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect('/login')
+            return HttpResponseRedirect('SEVEN')
         form = UploadForm()
         
         system_list = set()
@@ -608,7 +608,8 @@ class CreateUpload(View):
         'systemObjects': systemObjects,
         'form':form,
         })
-        return HttpResponse(template.render(context))
+        # return HttpResponse(template.render(context))
+        return HttpResponseRedirect('EIGHT')
 
 
 """                     --------------------- AUTHENTICATION --------------------                    """
