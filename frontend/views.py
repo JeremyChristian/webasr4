@@ -539,7 +539,7 @@ class CreateUpload(View):
             user = request.user
             system = upload.systems
             
-            pk = str(CustomUser.objects.get(email=user).id)
+            pk = str(user.pk)
             n = 5 - len(pk)
             pk =  ('0' * n) + pk
 
