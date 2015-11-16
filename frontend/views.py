@@ -490,17 +490,13 @@ class CreateUpload(View):
     def post(self,request):
         
         form = UploadForm(data=request.POST)
-
-        if not request.user.is_authenticated():
-            try:
-                user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
-            except:
-                return HttpResponse('ONE')
-        else:
-            user = request.user
-
-        if user.is_anonymous():
+        try:
             user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+        except:
+            if not request.user.is_authenticated():
+                return HttpResponseRedirect('/login')
+            else:
+                user = request.user
 
         if not request.FILES:
             return HttpResponse('TWO')
