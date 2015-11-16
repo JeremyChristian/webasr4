@@ -403,7 +403,7 @@ def getFile(request):
 
     for upload in uploads:
         timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
-        if timestamp == ses && user == upload.user:
+        if timestamp == ses and user == upload.user:
             output = Audiofile.objects.filter(upload = upload)[0]
             file_start = '[a-z]{3}$'
             file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
