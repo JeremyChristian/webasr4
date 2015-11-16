@@ -397,7 +397,7 @@ def getFile(request):
     src = request.POST.__getitem__('src').lstrip('0')
     ses = request.POST.__getitem__('ses')
     try:
-        user = CustomUser.objects.get(email=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+        user = authenticate(email=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
     except:
         return HttpResponse('username / password incorrect \n')
 
