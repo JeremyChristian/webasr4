@@ -413,7 +413,7 @@ def getFile(request):
                 response = HttpResponse(output.transcript,content_type='application/'+file_search.group(0))
                 response['Content-Disposition'] = 'attachment; filename='+output.upload.created.isoformat()+'_Transcript.'+file_search.group(0)
                 return response
-    return HttpResponse('failure\n')
+    return HttpResponse('File not Ready.\n')
 
 class UploadDetail(DetailView):
     model = Upload
@@ -492,11 +492,13 @@ class CreateUpload(View):
         form = UploadForm(data=request.POST)
         try:
             user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+            commandline = True
         except:
             if not request.user.is_authenticated():
                 return HttpResponseRedirect('/login')
             else:
                 user = request.user
+                commandline = False
 
         if not request.FILES:
             return HttpResponse('TWO')
@@ -546,10 +548,9 @@ class CreateUpload(View):
             process = Process(source=pk,session=timestamp,upload=upload)
             process.save()
             fabfile.process_execute(localpaths,filename,command)
-
-            
-            
-            return HttpResponse(user)
+            if commandline:
+                return HttpResponse(filename)
+            return HttpResponseRedirect('/newupload')
 
         else:
             systemObjects = System.objects.all()
@@ -567,8 +568,8 @@ class CreateUpload(View):
             'systemObjects': systemObjects,
             'form':form,
             })
-            # return render(request, 'frontend/newupload.html', context)  
-            return HttpResponse('FIVE')
+            return render(request, 'frontend/newupload.html', context)  
+            
 
         return HttpResponse("SIX")
     
@@ -603,8 +604,8 @@ class CreateUpload(View):
         'systemObjects': systemObjects,
         'form':form,
         })
-        # return HttpResponse(template.render(context))
-        return HttpResponse('EIGHT')
+        return HttpResponse(template.render(context))
+        # return HttpResponse('EIGHT')
 
 
 """                     --------------------- AUTHENTICATION --------------------                    """
