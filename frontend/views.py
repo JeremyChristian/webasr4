@@ -495,16 +495,16 @@ class CreateUpload(View):
             try:
                 user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
             except:
-                return HttpResponseRedirect('ONE')
+                return HttpResponse('ONE')
         
         user = request.user
         
         if not request.FILES:
             print
-            return HttpResponseRedirect('TWO')
+            return HttpResponse('TWO')
             
         if not 'file1' in request.FILES:
-            return HttpResponseRedirect('THREE')
+            return HttpResponse('THREE')
 
         
         
@@ -554,7 +554,7 @@ class CreateUpload(View):
 
             
             
-            return HttpResponseRedirect('FOUR')
+            return HttpResponse('FOUR')
 
         else:
             systemObjects = System.objects.all()
@@ -573,13 +573,13 @@ class CreateUpload(View):
             'form':form,
             })
             # return render(request, 'frontend/newupload.html', context)  
-            return HttpResponseRedirect('FIVE')
+            return HttpResponse('FIVE')
 
         return HttpResponse("SIX")
     
     def get(self,request):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect('SEVEN')
+            return HttpResponse('SEVEN')
         form = UploadForm()
         
         system_list = set()
@@ -609,7 +609,7 @@ class CreateUpload(View):
         'form':form,
         })
         # return HttpResponse(template.render(context))
-        return HttpResponseRedirect('EIGHT')
+        return HttpResponse('EIGHT')
 
 
 """                     --------------------- AUTHENTICATION --------------------                    """
