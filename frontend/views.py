@@ -488,12 +488,17 @@ class CreateUpload(View):
 
     @csrf_exempt
     def post(self,request):
-        return HttpResponse('THE DUCK?')
+        
         form = UploadForm(data=request.POST)
 
-        if not request.user.is_authenticated() or authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password')):
-            return HttpResponse('THE DUCK?')
-
+        if not request.user.is_authenticated() 
+            try:
+                user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+            except:
+                return HttpResponseRedirect('/newupload')
+        
+        user = request.user
+        
         if not request.FILES:
             print
             return HttpResponseRedirect('/newupload')
@@ -504,12 +509,6 @@ class CreateUpload(View):
         
         
         elif form.is_valid():
-
-            try:
-                user = request.user
-                return HttpResponse(user)
-            except:
-                user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
 
             upload = Upload(
 
