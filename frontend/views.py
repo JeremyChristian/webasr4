@@ -404,7 +404,7 @@ def getFile(request):
     for upload in Upload.objects.all():
         timestamp = ''.join(i for i in upload.created.isoformat() if i.isdigit())
         if timestamp == ses and user == upload.user:
-            output = Audiofile.objects.filter(upload = upload)[0]
+            output = OutputFile.objects.filter(upload = upload)[0]
             file_start = '[a-z]{3}$'
             file_regex = re.compile(file_start,re.IGNORECASE|re.DOTALL)
             file_search = file_regex.search(output.transcript.url)
