@@ -501,12 +501,15 @@ class CreateUpload(View):
         if not 'file1' in request.FILES:
             return HttpResponseRedirect('/newupload')
 
-        try:
-            user = request.user
-        except:
-            user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+        
         
         elif form.is_valid():
+
+            try:
+                user = request.user
+            except:
+                user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+
             upload = Upload(
 
                 user = user,
