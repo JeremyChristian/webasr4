@@ -488,7 +488,7 @@ class CreateUpload(View):
 
     @csrf_exempt
     def post(self,request):
-
+        return HttpResponse('THE FUCK')
         form = UploadForm(data=request.POST)
 
         if not request.user.is_authenticated() or authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password')):
