@@ -536,7 +536,6 @@ class CreateUpload(View):
                     pass
 
             message = Audiofile.objects.all()
-            user = request.user
             system = upload.systems
             
             pk = str(user.pk)
