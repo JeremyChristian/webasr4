@@ -538,7 +538,7 @@ class CreateUpload(View):
             message = Audiofile.objects.all()
             system = upload.systems
             
-            pk = str(user.pk)
+            pk = str(CustomUser.objects.get(email=user).id)
             n = 5 - len(pk)
             pk =  ('0' * n) + pk
 
