@@ -498,7 +498,10 @@ class CreateUpload(View):
                 return HttpResponse('ONE')
         else:
             user = request.user
-            
+
+        if user.is_anonymous():
+            user = authenticate(username=request.POST.__getitem__('email'),password=request.POST.__getitem__('password'))
+
         if not request.FILES:
             return HttpResponse('TWO')
             
