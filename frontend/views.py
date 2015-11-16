@@ -500,7 +500,6 @@ class CreateUpload(View):
         user = request.user
         
         if not request.FILES:
-            print
             return HttpResponse('TWO')
             
         if not 'file1' in request.FILES:
