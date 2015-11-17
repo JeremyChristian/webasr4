@@ -369,11 +369,15 @@ class ListProcess(View):
 
 def process_delete_view(request,pk):
     process = Process.objects.get(pk=pk)
-    fabfile.process_kill(process.source,process.session)
     upload = process.upload
-    upload.status = 'Aborted'
-    upload.save()
-    process.delete()
+    try:
+        fabfile.process_kill(process.source,process.session)
+        upload.status = 'Aborted'
+        upload.save()
+        process.delete()
+    except:
+        process.delete()
+    
     return HttpResponseRedirect('/processes')
 
 
