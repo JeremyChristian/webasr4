@@ -505,10 +505,10 @@ class CreateUpload(View):
                 commandline = False
 
         if not request.FILES:
-            return HttpResponse('TWO')
+            return HttpResponseRedirect('/newupload')
             
         if not 'file1' in request.FILES:
-            return HttpResponse('THREE')
+            return HttpResponseRedirect('/newupload')
         
         elif form.is_valid():
 
@@ -575,11 +575,11 @@ class CreateUpload(View):
             return render(request, 'frontend/newupload.html', context)  
             
 
-        return HttpResponse("SIX")
+        return HttpResponseRedirect('/newupload')
     
     def get(self,request):
         if not request.user.is_authenticated():
-            return HttpResponse('SEVEN')
+            return HttpResponseRedirect('/login')
         form = UploadForm()
         
         system_list = set()
