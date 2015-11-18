@@ -453,10 +453,10 @@ class UpdateUpload(View):
                 for key in request.FILES:
                     output = OutputFile(upload=upload,transcript=request.FILES.get(key))
                     output.save()
-                    upload.status = request.POST.get('status')
-                    upload.save()
+                upload.status = request.POST.get('status')
+                upload.save()
                 process = Process.objects.get(upload=upload)
-                process_delete(process.pk)
+                process.delete()
                 return HttpResponse('success\n')
         return HttpResponse('failure\n')
 
